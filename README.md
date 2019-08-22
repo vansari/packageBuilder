@@ -2,8 +2,8 @@
 Package Builder for PHP Classes.
 
 # Usage
-++++++ USAGE of packageBuilder.php ++++++
-Tool to collect all PHP classes and generate package.php files for autoloading.
+++++++ USAGE of packageBuilder.php ++++++\
+Tool to collect all PHP classes and generate package.php files for autoloading.\
 
 -h | --help                   => Shows this Usage\
 -p | --path                   => The path to the PHP classes (required)\
