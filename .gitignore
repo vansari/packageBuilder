@@ -1,0 +1,3 @@
+Würde .gitignore löschen
+# vendor Verzeichnis ignorieren
+/vendor
