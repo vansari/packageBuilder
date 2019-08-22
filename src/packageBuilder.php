@@ -13,8 +13,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 function writeUsage(): void {
     echo '++++++ USAGE of packageBuilder.php ++++++' . PHP_EOL;
-    echo 'This packageBuilder works completely without the internal core framework yeti.'
-        . ' You can use it anywhere you want and where package.php files are required!';
+    echo 'This packageBuilder collects all PHP Class Files and generates package.php files for' . PHP_EOL;
+    echo 'autoloading. You can also create an packages.php file which can use as a collection' . PHP_EOL;
+    echo 'of all package.php files for autoloading.';
     echo PHP_EOL . PHP_EOL;
     echo '-h | --help                   => Shows this Usage' . PHP_EOL;
     echo '-p | --path                   => The path to the PHP classes (required)' . PHP_EOL;
