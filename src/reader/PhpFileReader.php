@@ -70,6 +70,8 @@ class PhpFileReader {
                     $nextTokenAbstractFunction = $loopTokens[$index + 2][0];
                     if (
                         T_PUBLIC === $nextTokenAbstractFunction
+                        || T_PROTECTED === $nextTokenAbstractFunction
+                        || T_PRIVATE === $nextTokenAbstractFunction
                         || T_FUNCTION === $nextTokenAbstractFunction
                     ) {
                         break;

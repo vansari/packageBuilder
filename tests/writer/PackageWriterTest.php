@@ -34,7 +34,7 @@ class PackageWriterTest extends TestCase {
             $writer = new PackageWriter(new WriterOptions(false, true));
             $packagePath = $writer->writePackageFile($classHolder);
             $this->assertSame('tests\packageBuilder\testclasses\subdirectory', $writer->getPackageNamespace());
-            $this->assertSame('/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/subdirectory/package.php', $packagePath);
+            $this->assertSame('/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php', $packagePath);
         }
     }
 
@@ -56,7 +56,7 @@ class PackageWriterTest extends TestCase {
             $writer = new PackageWriter(new WriterOptions(false, true));
             $packagePath = $writer->writePackageFile($classHolder);
             $this->assertSame('tests\packageBuilder\testclasses', $writer->getPackageNamespace());
-            $this->assertSame('/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/package.php', $packagePath);
+            $this->assertSame('/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php', $packagePath);
         }
     }
 
@@ -77,9 +77,9 @@ class PackageWriterTest extends TestCase {
         $result = (new PackageWriter(new WriterOptions(false, true)))->writePackageFiles($sortedClassHolder);
         $expected = [
             'tests\packageBuilder\testclasses'
-            => '/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/package.php',
+            => '/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php',
             'tests\packageBuilder\testclasses\subdirectory'
-            => '/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/subdirectory/package.php',
+            => '/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php',
         ];
         $this->assertSame(
             $expected,

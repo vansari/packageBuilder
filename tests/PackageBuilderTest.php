@@ -32,7 +32,7 @@ return [
 ];";
         $this->assertSame(
             $packagesFileContent,
-            $packagesFile['/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/packages.php']
+            $packagesFile['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/packages.php']
         );
         $this->assertCount(1, $packagesFile);
 
@@ -63,12 +63,12 @@ return [
 
         $this->assertSame(
             $packageFileInSubdirectoryDir,
-            $packageFiles[0]['/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/subdirectory/package.php']
+            $packageFiles[0]['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php']
         );
 
         $this->assertSame(
             $packageFileInTestClassesDir,
-            $packageFiles[1]['/Volumes/GIT_Projects/foo-packagebuilder/tests/testclasses/package.php']
+            $packageFiles[1]['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php']
         );
     }
 }
