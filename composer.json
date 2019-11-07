@@ -6,7 +6,8 @@
     "authors": [
         {
             "name": "Kurt Junker",
-            "email": "kurt.junker@foo.ag"
+            "email": "kurt.junker@foo.ag",
+            "role": "developer"
         }
     ],
     "autoload": {
