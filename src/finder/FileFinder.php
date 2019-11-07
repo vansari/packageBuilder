@@ -8,7 +8,7 @@ use RecursiveDirectoryIterator;
 use SplFileInfo;
 
 /**
- * Class FileFinder - such und findet alle php Dateien in einem angegebenen Verzeichnis
+ * Class FileFinder - search and find all php files in the given path
  * @package tools\packageBuilder\finder
  */
 class FileFinder {
@@ -19,7 +19,7 @@ class FileFinder {
     private $files = [];
 
     /**
-     * Prüft ob $fileInfo eine Php Datei ist und hängt diese dann an $files an
+     * Check whether $fileInfo is an php file and append them
      * @param SplFileInfo $fileInfo
      * @return string|null
      */
@@ -35,8 +35,7 @@ class FileFinder {
     }
 
     /**
-     * Sucht anhand des Verzeichnisses die vorhandenen *.php Dateien
-     * und gibt das Ergebnis als array zurück
+     * Find the existing *.php files from the directory and return the result as an array
      *
      * @param string $directory
      * @param bool $recursive - default false
@@ -51,8 +50,10 @@ class FileFinder {
     }
 
     /**
-     * Funktion um Dateien zu suchen und mit den zu ignorierende abzugleichen
-     * Befüllt $this->files mit den korrekten php Dateien
+     *
+     * Function to search files and match them with those to ignore
+     * Fill $this->files with the correct php files
+     *
      * @param string $path
      * @param bool $recursive
      */
@@ -72,7 +73,7 @@ class FileFinder {
                         $recursiveIterator->getFilename(),
                         PATHINFO_BASENAME
                     ),
-                    $this->ignoredFilenames
+                    $this->getIgnoredFilenames()
                 )
             ) {
                 $recursiveIterator->next();
@@ -133,12 +134,25 @@ class FileFinder {
 
         return;
     }
+
     /**
+     * Sets a new array of ignored Files
      * @param array $ignoredFilenames
-     *
      * @return $this
      */
     public function setIgnoredFilenames(array $ignoredFilenames): self {
+        array_walk($ignoredFilenames, [$this, 'claimPhpExtension']);
+        $this->ignoredFilenames[] = $ignoredFilenames;
+
+        return $this;
+    }
+
+    /**
+     * append an array of ignored Files to the existing collection
+     * @param array $ignoredFilenames
+     * @return $this
+     */
+    public function appendIgnoredFilenames(array $ignoredFilenames): self {
         foreach ($ignoredFilenames as $ignoredFilename) {
             $this->addIgnoredFilename($ignoredFilename);
         }
@@ -146,6 +160,11 @@ class FileFinder {
         return $this;
     }
 
+    /**
+     * adds a new ignored filename
+     * @param string $file
+     * @return $this
+     */
     public function addIgnoredFilename(string $file): self {
         $this->claimPhpExtension($file);
         $this->ignoredFilenames[] = $file;

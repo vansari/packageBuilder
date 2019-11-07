@@ -6,7 +6,7 @@ namespace tools\packageBuilder\util;
 use InvalidArgumentException;
 
 /**
- * Class ClassHolder - Hält alle Klassen die in einem Verzeichnis und Namespace existieren vor
+ * Class ClassHolder - Holds all classes that exist in a directory and namespace
  * @package tools\packageBuilder\util
  */
 class ClassHolder {
@@ -22,7 +22,7 @@ class ClassHolder {
 
     public function __construct(string $path) {
         if ('' === $path || false === is_dir($path)) {
-            throw new InvalidArgumentException('Der Pfad existiert nicht!');
+            throw new InvalidArgumentException('The path doesn`t exists!');
         }
         $this->path = $path;
     }
@@ -73,7 +73,7 @@ class ClassHolder {
 
     public function addClass(string $classname, string $filename): self {
         if (array_key_exists($classname, $this->classes) && $filename !== $this->classes[$classname]) {
-            throw new InvalidArgumentException('Die Klasse existiert schon! ' . $classname);
+            throw new InvalidArgumentException('The class already exists! ' . $classname);
         }
 
         $this->classes[$classname] = $filename;
