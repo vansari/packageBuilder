@@ -6,10 +6,14 @@ namespace tools\packageBuilder\reader;
 use InvalidArgumentException;
 use RuntimeException;
 
+/**
+ * Class PhpFileReader - Reads the content of an php file
+ * @package tools\packageBuilder\reader
+ */
 class PhpFileReader {
 
     /**
-     * Holt alle PHP Tokens aus dem übergebenen $content
+     * Get all PHP tokens from the given $content
      * @param string $content
      *
      * @return array
@@ -24,7 +28,7 @@ class PhpFileReader {
     }
 
     /**
-     * Liest den Content aus dem $file
+     * read the content from the file
      * @param string $file
      *
      * @return string
@@ -36,8 +40,8 @@ class PhpFileReader {
     }
 
     /**
-     * Iteriert über die $tokens des $files
-     * und gibt den $namespace sowie $classname und $filename zurück
+     * Iterates over the $tokens of the $files and returns the $namespace
+     * as well as $classname and $filename
      * @param string $file
      * @param null|array $tokens
      *
@@ -103,7 +107,7 @@ class PhpFileReader {
     }
 
     /**
-     * Prüft, ob das $file ein nicht leerer String ist und als Datei existiert
+     * Check if the $file is a non-empty string and exists as a file
      * @param string $file
      */
     private function claimFile(string $file): void {

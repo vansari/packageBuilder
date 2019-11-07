@@ -6,9 +6,13 @@ namespace tools\packageBuilder\writer;
 use InvalidArgumentException;
 use tools\packageBuilder\util\PackageContainer;
 
+/**
+ * Class PackagesWriter - Writer for the packages.php files
+ * @package tools\packageBuilder\writer
+ */
 class PackagesWriter {
 
-    private const HEADER = '<?php' . PHP_EOL . 'declare(strict_types = 1);' . PHP_EOL;
+    private const HEADER = '<?php' . PHP_EOL . 'declare (strict_types = 1);' . PHP_EOL;
 
     /**
      * @var WriterOptions
@@ -59,10 +63,10 @@ class PackagesWriter {
     }
 
     /**
-     * Schreibt anhand der übergebenen package.php Dateien eine packages.php Datei
+     * Writes a packages.php file based on the submitted package.php files
      *
      * @param string $targetpath
-     * @param array $packages
+     * @param PackageContainer $packageContainer
      *
      * @return null|string
      * @throws \Exception
@@ -101,6 +105,12 @@ class PackagesWriter {
         return $packagesFilePath;
     }
 
+    /**
+     * @param string $namespace
+     * @param string $targetpath
+     * @param string $path
+     * @return string
+     */
     private function createLine(string $namespace, string $targetpath, string $path): string {
         $relativePath = preg_replace(
             sprintf('#(.*%s)#', $targetpath),
@@ -116,6 +126,11 @@ class PackagesWriter {
         );
     }
 
+    /**
+     * @param string $targetpath
+     * @param PackageContainer $packages
+     * @return string
+     */
     private function createContent(string $targetpath, PackageContainer $packages): string {
         $packages->sortPackages();
         $content = self::HEADER . PHP_EOL;

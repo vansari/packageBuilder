@@ -7,6 +7,10 @@ use tools\packageBuilder\util\ClassHolder;
 use tools\packageBuilder\util\ClassHolderContainer;
 use tools\packageBuilder\util\PackageContainer;
 
+/**
+ * Class PackageWriter - Writer for a single package.php file
+ * @package tools\packageBuilder\writer
+ */
 class PackageWriter {
 
     private const HEADER = '<?php' . PHP_EOL . 'declare (strict_types = 1);' . PHP_EOL;
@@ -78,7 +82,7 @@ class PackageWriter {
     }
 
     /**
-     * Schreibt eine package.php Datei
+     * Writes a package.php file
      *
      * @param ClassHolder $classHolder
      * @return string|null packagePath
@@ -111,10 +115,9 @@ class PackageWriter {
     }
 
     /**
-     * Iteriert über ein Array von Klassen und erstellt package.php Dateien
+     * Iterates over an ClassHolderContainer and creates package.php files
      *
-     * @param array $classes
-     *
+     * @param ClassHolderContainer $container
      * @return PackageContainer
      * @throws \Exception
      */
@@ -137,10 +140,9 @@ class PackageWriter {
     }
 
     /**
-     * Erstellt den Content für die package.php
+     * Creates the content of the package.php
      *
-     * @param array $packages [ <class> => <Filename>,]
-     *
+     * @param array $classes
      * @return string|null
      */
     private function createContent(array $classes): ?string {

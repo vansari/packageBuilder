@@ -4,8 +4,13 @@ declare(strict_types = 1);
 namespace tools\packageBuilder\util;
 
 use Countable;
+use InvalidArgumentException;
 use Iterator;
 
+/**
+ * Class ClassHolderContainer
+ * @package tools\packageBuilder\util
+ */
 class ClassHolderContainer implements Countable, Iterator {
 
     /**

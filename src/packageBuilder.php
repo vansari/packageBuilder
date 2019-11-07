@@ -11,6 +11,9 @@ use tools\packageBuilder\writer\WriterOptions;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * Structure of usage
+ */
 function writeUsage(): void {
     echo '++++++ USAGE of packageBuilder.php ++++++' . PHP_EOL;
     echo 'This packageBuilder collects all PHP Class Files and generates package.php files for' . PHP_EOL;
@@ -30,6 +33,7 @@ function writeUsage(): void {
         . ' do not write files.' . PHP_EOL;
 }
 
+// region CLI Options
 $shortOpts = 'p:';
 $shortOpts .= 'r';
 $shortOpts .= 'o';
@@ -80,6 +84,9 @@ foreach ($options as $key => $value) {
             exit;
     }
 }
+
+// endregion
+
 /** @var null|string $path */
 if (null === $path) {
     throw new InvalidArgumentException(
@@ -95,7 +102,7 @@ $packageBuilder = PackageBuilder::create($path)
 $packageBuilder->buildFiles();
 
 /**
- * package Datei loggen
+ * package file logging
  */
 if (!$packageBuilder->getPackageContainer()->isEmpty()) {
     echo str_repeat('*', 50) . PHP_EOL;
@@ -117,7 +124,7 @@ if (!$packageBuilder->getPackageContainer()->isEmpty()) {
     echo str_repeat('*', 50) . PHP_EOL;
 }
 
-// packages.php Datei loggen
+// packages.php file logging
 if ($withPackagesFile) {
     echo PHP_EOL . str_repeat('*', 50) . PHP_EOL;
     echo 'packages.php File generated: ' . PHP_EOL;

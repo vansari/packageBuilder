@@ -6,7 +6,8 @@
     "authors": [
         {
             "name": "Kurt Junker",
-            "email": "kurt.junker@foo.ag"
+            "email": "kurt.junker@foo.ag",
+            "role": "developer"
         }
     ],
     "autoload": {
@@ -15,7 +16,8 @@
         }
     },
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-tokenizer": "^7.2"
     },
     "autoload-dev": {
         "psr-4": {

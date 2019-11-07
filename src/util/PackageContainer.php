@@ -6,6 +6,10 @@ namespace tools\packageBuilder\util;
 use Countable;
 use Iterator;
 
+/**
+ * Class PackageContainer
+ * @package tools\packageBuilder\util
+ */
 class PackageContainer implements Countable, Iterator {
 
     /**
@@ -13,6 +17,12 @@ class PackageContainer implements Countable, Iterator {
      */
     private $container = [];
 
+    /**
+     * Add a new package file for the given namespace if it not exists in the container
+     * @param string $namespace
+     * @param string $packagePath
+     * @return $this
+     */
     public function addPackageFile(string $namespace, string $packagePath): self {
         if (false === array_key_exists($namespace, $this->container)) {
             $this->container[$namespace] = $packagePath;
@@ -21,6 +31,13 @@ class PackageContainer implements Countable, Iterator {
         return $this;
     }
 
+    /**
+     * add a array of package files to the existing container if they did not exists
+     * @param array $packageFiles
+     * @return $this
+     *
+     * @uses \tools\packageBuilder\util\PackageContainer::addPackageFile()
+     */
     public function addPackageFiles(array $packageFiles): self {
         foreach ($packageFiles as $namespace => $packageFile) {
             if (false === is_string($namespace) && '' === $namespace) {
@@ -32,6 +49,11 @@ class PackageContainer implements Countable, Iterator {
         return $this;
     }
 
+    /**
+     * Clearing the current container and add the package files
+     * @param array $packageFiles
+     * @return $this
+     */
     public function setPackageFiles(array $packageFiles): self {
         $this->container = [];
         $this->addPackageFiles($packageFiles);
@@ -48,6 +70,7 @@ class PackageContainer implements Countable, Iterator {
     }
 
     /**
+     * Returns all package file which existing with the given namespace
      * @param string $value
      * @return array
      */
@@ -63,6 +86,7 @@ class PackageContainer implements Countable, Iterator {
     }
 
     /**
+     * Returns all package files which existing with the given path
      * @param string $value
      * @return array
      */
@@ -77,6 +101,9 @@ class PackageContainer implements Countable, Iterator {
         return [];
     }
 
+    /**
+     * @return bool
+     */
     public function isEmpty(): bool {
         return [] === $this->container;
     }
@@ -145,14 +172,22 @@ class PackageContainer implements Countable, Iterator {
         return count($this->container);
     }
 
+    /**
+     * Sort the Packages by key with ignoring case
+     * @return $this
+     */
     public function sortPackages(): self {
-        ksort($this->container);
+        ksort($this->container, SORT_STRING | SORT_FLAG_CASE);
 
         return $this;
     }
 
+    /**
+     * sort the container by key reverse with ignoring case
+     * @return $this
+     */
     public function sortPackagesReverse(): self {
-        krsort($this->container);
+        krsort($this->container, SORT_STRING | SORT_FLAG_CASE);
 
         return $this;
     }
