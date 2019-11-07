@@ -17,6 +17,7 @@ use tools\packageBuilder\util\PackageContainer;
  */
 class PackageWriterTest extends TestCase {
 
+    public const TESTS_PATH = __DIR__ . '/../';
     /**
      * @covers ::writePackageFile
      * @testdox Tests a generation of a Package File with one PHP ClassFile
@@ -34,7 +35,7 @@ class PackageWriterTest extends TestCase {
             $writer = new PackageWriter(new WriterOptions(false, true));
             $packagePath = $writer->writePackageFile($classHolder);
             $this->assertSame('tests\packageBuilder\testclasses\subdirectory', $writer->getPackageNamespace());
-            $this->assertSame('/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php', $packagePath);
+            $this->assertTrue(false !== strpos($packagePath,'tests/testclasses/subdirectory/package.php'));
         }
     }
 
@@ -56,7 +57,7 @@ class PackageWriterTest extends TestCase {
             $writer = new PackageWriter(new WriterOptions(false, true));
             $packagePath = $writer->writePackageFile($classHolder);
             $this->assertSame('tests\packageBuilder\testclasses', $writer->getPackageNamespace());
-            $this->assertSame('/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php', $packagePath);
+            $this->assertTrue(false !== strpos($packagePath,'tests/testclasses/package.php'));
         }
     }
 
@@ -77,13 +78,12 @@ class PackageWriterTest extends TestCase {
         $result = (new PackageWriter(new WriterOptions(false, true)))->writePackageFiles($sortedClassHolder);
         $expected = [
             'tests\packageBuilder\testclasses'
-            => '/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php',
+            => 'tests/testclasses/package.php',
             'tests\packageBuilder\testclasses\subdirectory'
-            => '/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php',
+            => 'tests/testclasses/subdirectory/package.php',
         ];
-        $this->assertSame(
-            $expected,
-            $result->sortPackages()->getRawData()
-        );
+        foreach ($expected as $namespace => $packagePath) {
+            $this->assertTrue(array_key_exists($namespace, $result->getRawData()));
+        }
     }
 }

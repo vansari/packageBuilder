@@ -24,7 +24,7 @@ class PackageBuilderTest extends TestCase {
         $builder->buildFiles();
         $packagesFile = $builder->getDryRunResultPackagesFile();
         $packagesFileContent = "<?php
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 return [
     'tests\packageBuilder\\testclasses' => __DIR__ . '/package.php',
@@ -32,13 +32,13 @@ return [
 ];";
         $this->assertSame(
             $packagesFileContent,
-            $packagesFile['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/packages.php']
+            $packagesFile[__DIR__ . '/testclasses/packages.php']
         );
         $this->assertCount(1, $packagesFile);
 
         $packageFiles = $builder->getDryRunResultPackageFiles();
         $packageFileInSubdirectoryDir = "<?php
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace tests\packageBuilder\\testclasses\subdirectory;
 
@@ -48,7 +48,7 @@ return [
 ];";
 
         $packageFileInTestClassesDir = "<?php
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace tests\packageBuilder\\testclasses;
 
@@ -63,12 +63,12 @@ return [
 
         $this->assertSame(
             $packageFileInSubdirectoryDir,
-            $packageFiles[0]['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/subdirectory/package.php']
+            $packageFiles[0][__DIR__ . '/testclasses/subdirectory/package.php']
         );
 
         $this->assertSame(
             $packageFileInTestClassesDir,
-            $packageFiles[1]['/Volumes/GIT_Projects/packageBuilder/tests/testclasses/package.php']
+            $packageFiles[1][__DIR__ . '/testclasses/package.php']
         );
     }
 }

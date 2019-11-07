@@ -17,31 +17,32 @@ class PackagesWriterTest extends TestCase {
      * @covers ::writePackagesFile
      */
     public function testWritePackagesFilesDryRun(): void {
+        $pathToTest = realpath(__DIR__ . '/../');
         $packageContainer = new PackageContainer();
         $packageContainer->addPackageFiles(
             [
-                'foo\bar' => '/Volumes/GIT_Projects/packageBuilder/tests/foo/bar/package.php',
-                'foo\bar\baz' => '/Volumes/GIT_Projects/packageBuilder/tests/foo/bar/baz/package.php',
-                'foo\bar\buz' => '/Volumes/GIT_Projects/packageBuilder/tests/foo/bar/buz/package.php',
-                'foo' => '/Volumes/GIT_Projects/packageBuilder/tests/foo/package.php',
+                'foo\bar' => $pathToTest . '/foo/bar/package.php',
+                'foo\bar\baz' => $pathToTest . '/foo/bar/baz/package.php',
+                'foo\bar\buz' => $pathToTest . '/foo/bar/buz/package.php',
+                'foo' => $pathToTest . '/foo/package.php',
             ]
         );
 
         $packagesWriter = new PackagesWriter(new WriterOptions(false, true, false, false));
         $result = $packagesWriter
             ->writePackagesFile(
-                '/Volumes/GIT_Projects/packageBuilder/tests/',
+                $pathToTest,
                 $packageContainer
             );
 
         $this->assertSame(
-            '/Volumes/GIT_Projects/packageBuilder/tests/packages.php',
+            $pathToTest . '/packages.php',
             $result
         );
         $expectedResult = [
-            '/Volumes/GIT_Projects/packageBuilder/tests/packages.php'
+            $pathToTest . '/packages.php'
             => "<?php
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 return [
     'foo' => __DIR__ . '/foo/package.php',
