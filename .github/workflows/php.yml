@@ -16,29 +16,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Composer
+    - name: Validate composer.json and composer.lock and install
       uses: php-actions/composer@v5
       with:
         version: latest
         php_version: ${{ matrix.php-versions }}
-        command: install
         interaction: no
         dev: yes
         progress: no
         quiet: no
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
+      run: |
+        composer validate --strict
+        composer install --prefer-dist --no-progress
+    - name: PHPUnit tests
+      uses: php-actions/phpunit@v3
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Run test suite
-      run: composer test
+        php_version: ${{ matrix.php-versions }}
+        configuration: phpunit.xml
+        memory_limit: 256M
