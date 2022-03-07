@@ -2,14 +2,16 @@
 <?php
 declare(strict_types = 1);
 
-use tools\packageBuilder\finder\FileFinder;
-use tools\packageBuilder\PackageBuilder;
-use tools\packageBuilder\reader\PhpFileReader;
-use tools\packageBuilder\writer\PackagesWriter;
-use tools\packageBuilder\writer\PackageWriter;
-use tools\packageBuilder\writer\WriterOptions;
+if (false === class_exists(PackageBuilder::class)) {
+    if (file_exists(__DIR__ . '/../vendor/autoload.php')) {  // cloned / dev environment?
+        require_once(__DIR__ . '/../vendor/autoload.php');
+    } else {
+        require_once(realpath(__DIR__ . '/../../../') . '/autoload.php');
+    }
+}
 
-require __DIR__ . '/../vendor/autoload.php';
+use tools\packageBuilder\PackageBuilder;
+use tools\packageBuilder\writer\WriterOptions;
 
 /**
  * Structure of usage

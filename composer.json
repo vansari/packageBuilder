@@ -1,7 +1,7 @@
 {
-    "name": "foo.ag/packagebuilder",
+    "name": "vansari/packagebuilder",
     "type": "project",
-    "version": "1.0.0",
+    "license": "MIT",
     "description": "Tool to generate package.php and packages.php files for autoloading classes.",
     "authors": [
         {
@@ -10,6 +10,7 @@
             "role": "developer"
         }
     ],
+    "bin": ["bin/package-builder"],
     "autoload": {
         "psr-4": {
             "tools\\packageBuilder\\": "src/"
@@ -26,5 +27,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
