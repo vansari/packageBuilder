@@ -26,9 +26,13 @@ jobs:
         dev: yes
         progress: no
         quiet: no
-    - name: PHPUnit tests
-      uses: php-actions/phpunit@v3
+    - name: Run Tests
+      uses: php-actions/composer@v5
       with:
+        command: test
+        version: latest
         php_version: ${{ matrix.php-versions }}
-        configuration: phpunit.xml
-        memory_limit: 256M
+        interaction: no
+        dev: yes
+        progress: no
+        quiet: no
