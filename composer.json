@@ -1,5 +1,5 @@
 {
-    "name": "foo.ag/packageBuilder",
+    "name": "foo.ag/packagebuilder",
     "type": "project",
     "version": "1.0.0",
     "description": "Tool to generate package.php and packages.php files for autoloading classes.",
