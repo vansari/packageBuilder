@@ -20,8 +20,8 @@ jobs:
       uses: php-actions/composer@v5
       with:
         command: |
-          composer validate --strict
-          composer install --prefer-dist --no-progress
+          validate --strict
+          install --prefer-dist --no-progress
         version: latest
         php_version: ${{ matrix.php-versions }}
         interaction: no
