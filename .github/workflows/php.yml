@@ -19,9 +19,7 @@ jobs:
     - name: Validate composer.json and composer.lock and install
       uses: php-actions/composer@v5
       with:
-        command: |
-          validate --strict
-          install --prefer-dist --no-progress
+        command: install --prefer-dist --no-progress
         version: latest
         php_version: ${{ matrix.php-versions }}
         interaction: no
