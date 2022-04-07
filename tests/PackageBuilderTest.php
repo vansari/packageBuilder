@@ -24,7 +24,7 @@ class PackageBuilderTest extends TestCase {
         $builder->buildFiles();
         $packagesFile = $builder->getDryRunResultPackagesFile();
         $packagesFileContent = "<?php
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 return [
     'tests\packageBuilder\\testclasses' => __DIR__ . '/package.php',
@@ -38,7 +38,7 @@ return [
 
         $packageFiles = $builder->getDryRunResultPackageFiles();
         $packageFileInSubdirectoryDir = "<?php
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace tests\packageBuilder\\testclasses\subdirectory;
 
@@ -48,7 +48,7 @@ return [
 ];";
 
         $packageFileInTestClassesDir = "<?php
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace tests\packageBuilder\\testclasses;
 

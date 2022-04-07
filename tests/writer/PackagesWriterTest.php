@@ -42,7 +42,7 @@ class PackagesWriterTest extends TestCase {
         $expectedResult = [
             $pathToTest . '/packages.php'
             => "<?php
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 return [
     'foo' => __DIR__ . '/foo/package.php',
