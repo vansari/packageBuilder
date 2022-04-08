@@ -12,7 +12,7 @@ use tools\packageBuilder\util\PackageContainer;
  */
 class PackagesWriter {
 
-    private const HEADER = '<?php' . PHP_EOL . 'declare (strict_types = 1);' . PHP_EOL;
+    private const HEADER = '<?php' . PHP_EOL . 'declare(strict_types = 1);' . PHP_EOL;
 
     /**
      * @var WriterOptions

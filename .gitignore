@@ -1,3 +1,4 @@
 Würde .gitignore löschen
 # vendor Verzeichnis ignorieren
+.phpunit.result.cache
 /vendor
