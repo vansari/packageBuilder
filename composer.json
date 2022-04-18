@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "php": "7.3.*",
+        "php": ">=7.3 <8.2",
         "ext-tokenizer": "*"
     },
     "autoload-dev": {
@@ -26,7 +26,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^9.5.20"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
